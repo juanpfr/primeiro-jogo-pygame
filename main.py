@@ -1,57 +1,28 @@
 # Arquivo principal do projeto
 
-# Importar bibliotecas
 import pygame
-import sys              # Funcionalidades do sistema
+import sys
+from config import width, height, fps, white
+import player
 
-# Preparar o pygame para ser utilizado
+# Iniciar Pygame
 pygame.init()
-
-# Tamanho da janela
-width = 800
-height = 600
-
-# Criar a tela do jogo
 screen = pygame.display.set_mode((width, height))
+pygame.display.set_caption("Friends in the backrooms")
+player.init_player()
+clock = pygame.time.Clock()
 
-# Título da janela
-pygame.display.set_caption("Horror 2D")
-
-# Cores
-white = (255, 255, 255)
-blue = (0, 0, 255)
-
-# Player
-player_x = 100
-player_y = 100
-player_size = 50
-player_speed = 1
-
-# Loop principal (Loop infinito para manter o jogo em execução)
+# Loop principal
 while True:
-    # Tratar eventos, clicks ou pressionamento de teclas
+    dt = clock.tick(fps)
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
             sys.exit()
 
-    # Pegar teclas pressionadas
     keys = pygame.key.get_pressed()
 
-    # Movimentação do player
-    if keys[pygame.K_w] and player_y > 0:
-        player_y -= player_speed # Move para cima se a posição y for maior que 0
-
-    if keys[pygame.K_a] and player_x > 0:
-        player_x -= player_speed # Move para a esquerda se a posição x for maior de 0
-
-    if keys[pygame.K_s] and player_y < height - player_size:
-        player_y += player_speed # Move para baixo se a posição y for menor que a altura menos o tamanho do player
-
-    if keys[pygame.K_d] and player_x < width - player_size:
-        player_x += player_speed # Move para a direita se a posição x for menor que a largura menos o tamanho do player
-
-    # Atualizar tela
-    screen.fill(white)                                                                  # Fundo
-    pygame.draw.rect(screen, blue, (player_x, player_y, player_size, player_size))      # Desenha o player
-    pygame.display.flip()                                                               # Atualiza a tela
+    # Atualizar e desenhar
+    screen.fill(white)
+    player.draw(screen, dt, keys)
+    pygame.display.flip()
