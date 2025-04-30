@@ -39,17 +39,17 @@ while True:
     keys = pygame.key.get_pressed()
 
     # Movimentação do player
-    if keys[pygame.K_w]:
-        player_y -= player_speed # Move para cima
+    if keys[pygame.K_w] and player_y > 0:
+        player_y -= player_speed # Move para cima se a posição y for maior que 0
 
-    if keys[pygame.K_a]:
-        player_x -= player_speed # Move para a esquerda
+    if keys[pygame.K_a] and player_x > 0:
+        player_x -= player_speed # Move para a esquerda se a posição x for maior de 0
 
-    if keys[pygame.K_s]:
-        player_y += player_speed # Move para baixo
+    if keys[pygame.K_s] and player_y < height - player_size:
+        player_y += player_speed # Move para baixo se a posição y for menor que a altura menos o tamanho do player
 
-    if keys[pygame.K_d]:
-        player_x += player_speed # Move para a direita
+    if keys[pygame.K_d] and player_x < width - player_size:
+        player_x += player_speed # Move para a direita se a posição x for menor que a largura menos o tamanho do player
 
     # Atualizar tela
     screen.fill(white)                                                                  # Fundo
