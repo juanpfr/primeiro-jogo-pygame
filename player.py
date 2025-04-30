@@ -5,7 +5,7 @@ from config import width, height
 # Variáveis globais do player
 player_x = 100
 player_y = 100
-player_speed = 0.5
+player_speed = 3
 
 # Controle de animação
 current_frame = 0
