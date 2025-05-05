@@ -13,7 +13,9 @@ def load_images():
 # Variáveis globais de posição e animação
 player_x = 100
 player_y = 100
-player_speed = 0.5
+player_speed = 3
+
+# Controle de animação
 current_frame = 0
 frame_timer = 0
 frame_duration = 200

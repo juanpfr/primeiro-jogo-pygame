@@ -1,8 +1,10 @@
 import pygame
 import sys
+from config import width, height, fps, black
 from config import width, height
 import map
 import player
+from menu import font, text_color, draw_text
 
 # Inicialização
 pygame.init()
@@ -22,14 +24,27 @@ wall_rects, tiles_to_draw = map.load_map(floor_img, wall_img)
 
 # Loop do jogo
 while True:
+    dt = clock.tick(fps)
+    # Checar se o jogo está pausado
+    if game_paused == True:
+        pass
+        # Mostrar Menu
+    else:
+        draw_text("Pressione ESC para pausar", font, text_color, 360, 680)
     dt = clock.tick(165)
     for event in pygame.event.get():
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_ESCAPE:
+                game_paused = True
         if event.type == pygame.QUIT:
             pygame.quit()
             sys.exit()
 
     keys = pygame.key.get_pressed()
 
+    # Atualizar e desenhar
+    screen.fill(black)
+    player.draw(screen, dt, keys)
     # Desenhar fundo do mapa
     for img, pos in tiles_to_draw:
         screen.blit(img, pos)

@@ -1,8 +1,10 @@
-# Configurações do jogo
+# Arquivo de configuração
 
-# Tamanho da janela
-width = 1024
-height = 768
+# Tela
+width = 1820
+height = 980
+fps = 165
 
-# Tamanho dos tiles (blocos)
-tile_size = 64
+# Cores
+white = (255, 255, 255)
+black = (0, 0, 0)
