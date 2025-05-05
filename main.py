@@ -3,7 +3,6 @@ import sys
 from config import width, height
 import map
 import player
-from lantern import draw_lantern
 
 # Inicialização
 pygame.init()
